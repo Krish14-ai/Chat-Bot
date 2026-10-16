@@ -8,3 +8,11 @@ model = ChatGoogleGenerativeAI(model="gemini-3.8-flash")
 
 st.header("ChatBot")
 
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# replay history on every rerun
+for m in st.session_state.messages:
+    with st.chat_message(m["role"]):
+        st.write(m["content"])
+
